@@ -3,186 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>YUTA HUB - Script Center</title>
+    <title>YUTA HUB</title>
     <style>
-        /* Reset & Base Style */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
         }
-
         body {
-            background-color: #0f111a;
-            color: #e2e8f0;
+            background-color: #0d0e15;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            padding: 20px;
-            background-image: radial-gradient(circle at top right, rgba(0, 122, 255, 0.1), transparent),
-                              radial-gradient(circle at bottom left, rgba(168, 85, 247, 0.1), transparent);
         }
-
-        /* Container Card */
-        .container {
-            background: rgba(22, 28, 45, 0.8);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(12px);
-            padding: 30px;
-            border-radius: 16px;
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
-            max-width: 550px;
-            width: 100%;
-            text-align: center;
-        }
-
-        /* Badge Status */
-        .badge {
-            display: inline-block;
-            background: rgba(16, 185, 129, 0.15);
-            color: #10b981;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 600;
-            margin-bottom: 16px;
-            border: 1px solid rgba(16, 185, 129, 0.2);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        /* Typography */
-        h1 {
-            font-size: 28px;
-            font-weight: 800;
-            background: linear-gradient(135deg, #007aff, #a855f7);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 8px;
-            letter-spacing: -0.5px;
-        }
-
-        .subtitle {
-            color: #94a3b8;
-            font-size: 14px;
-            margin-bottom: 24px;
-        }
-
-        /* Code Block Wrapper */
-        .code-box-wrapper {
-            background-color: #090d16;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 10px;
-            position: relative;
-            margin-bottom: 24px;
-            text-align: left;
-            overflow: hidden;
-        }
-
-        /* Code Header */
-        .code-header {
-            background-color: #131926;
-            padding: 10px 16px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .code-title {
-            font-size: 12px;
-            color: #64748b;
-            font-family: monospace;
-            font-weight: 600;
-        }
-
-        /* Copy Button */
         .btn-copy {
-            background-color: #007aff;
+            background: linear-gradient(135deg, #007aff, #a855f7);
             color: #ffffff;
             border: none;
-            padding: 6px 14px;
-            font-size: 12px;
-            font-weight: 600;
-            border-radius: 6px;
+            padding: 16px 36px;
+            font-size: 16px;
+            font-weight: 700;
+            border-radius: 12px;
             cursor: pointer;
+            box-shadow: 0 4px 20px rgba(0, 122, 255, 0.3);
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            letter-spacing: 0.5px;
             transition: all 0.2s ease;
         }
-
         .btn-copy:hover {
-            background-color: #0056b3;
-            transform: translateY(-1px);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 24px rgba(168, 85, 247, 0.4);
         }
-
         .btn-copy:active {
             transform: translateY(0);
-        }
-
-        /* Textarea / Box Script */
-        textarea.code-content {
-            width: 100%;
-            height: 120px;
-            background: transparent;
-            border: none;
-            color: #38bdf8;
-            font-family: 'Fira Code', 'Courier New', Courier, monospace;
-            font-size: 13px;
-            padding: 16px;
-            resize: none;
-            outline: none;
-            line-height: 1.6;
-        }
-
-        /* Footer Attribution */
-        .footer-text {
-            font-size: 12px;
-            color: #475569;
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <span class="badge">Active / Undetected</span>
-        <h1>YUTA HUB - TALB</h1>
-        <p class="subtitle">Salin skrip auto farm di bawah ini untuk digunakan pada Executor pilihan Anda.</p>
-        
-        <!-- Fitur 1: Kotak Copy Script -->
-        <div class="code-box-wrapper">
-            <div class="code-header">
-                <span class="code-title">main_script.luau</span>
-                <button class="btn-copy" id="copyBtn" onclick="copyToClipboard()">Salin Skrip</button>
-            </div>
-            <!-- Masukkan kode skrip Roblox Anda di dalam tag textarea ini -->
-            <textarea class="code-content" id="scriptText" readonly>-- Yuta Hub Auto Farm TALB
-loadstring(game:HttpGet("https://raw.githubusercontent.com/trompetnohbhb-maker/isnide/refs/heads/main/sad"))()</textarea>
-        </div>
-
-        <div class="footer-text">
-            Dibuat menggunakan integrasi eksternal GitHub Pages.
-        </div>
-    </div>
+    <!-- Hanya 1 kotak tombol bertuliskan copy script -->
+    <button class="btn-copy" id="copyBtn" onclick="copyScript()">COPY SCRIPT</button>
 
     <script>
-        function copyToClipboard() {
-            var copyText = document.getElementById("scriptText");
+        function copyScript() {
+            // Masukkan teks skrip luau Anda di bawah ini
+            var scriptCode = 'loadstring(game:HttpGet("https://raw.githubusercontent.com/trompetnohbhb-maker/isnide/refs/heads/main/sad"))()';
+            
+            navigator.clipboard.writeText(scriptCode);
+            
             var button = document.getElementById("copyBtn");
+            button.innerText = "COPIED! ✓";
+            button.style.background = "#10b981";
+            button.style.boxShadow = "0 4px 20px rgba(16, 185, 129, 0.4)";
             
-            // Proses seleksi dan salin teks
-            copyText.select();
-            copyText.setSelectionRange(0, 99999); // Untuk perangkat HP/Mobile
-            navigator.clipboard.writeText(copyText.value);
-            
-            // Efek perubahan visual pada tombol setelah sukses menyalin
-            button.innerText = "Tersalin! ✓";
-            button.style.backgroundColor = "#10b981"; // Berubah warna menjadi hijau sukses
-            
-            // Kembalikan ke teks semula setelah 2 detik
             setTimeout(function() {
-                button.innerText = "Salin Skrip";
-                button.style.backgroundColor = "#007aff"; // Kembali ke warna biru semula
+                button.innerText = "COPY SCRIPT";
+                button.style.background = "linear-gradient(135deg, #007aff, #a855f7)";
+                button.style.boxShadow = "0 4px 20px rgba(0, 122, 255, 0.3)";
             }, 2000);
         }
     </script>
